@@ -10,10 +10,11 @@ const getAllBookings = async (req, res) => {
 };
 
 const getBookingsLast5Hours = async (req, res) => {
+ 
   const fiveHoursAgo = new Date(Date.now() - 5 * 60 * 60 * 1000); // Calculate 5 hours ago
-
+  console.log(place_);
   try {
-    const bookings = await Bookings.find({ date_time_: { $gte: fiveHoursAgo } });
+    const bookings = await Bookings.find({ date_time_: { $gte: fiveHoursAgo } ,place_: place_});
     res.status(200).json(bookings);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -22,9 +23,10 @@ const getBookingsLast5Hours = async (req, res) => {
 
 const getCombinedSlotsLast5Hours = async (req, res) => {
   const fiveHoursAgo = new Date(Date.now() - 5 * 60 * 60 * 1000); // Calculate 5 hours ago
-
+ 
+  const { place_ } = req.params;
   try {
-    const bookings = await Bookings.find({ date_time_: { $gte: fiveHoursAgo } });
+    const bookings = await Bookings.find({ date_time_: { $gte: fiveHoursAgo },place_: place_ });
     let combinedSlots = [];
     bookings.forEach(booking => {
       combinedSlots = combinedSlots.concat(booking.slots);
@@ -36,7 +38,8 @@ const getCombinedSlotsLast5Hours = async (req, res) => {
 };
 
 const createBooking = async (req, res) => {
-  const { email, username, phoneNo, slots, amount } = req.body;
+  
+  const { email, username, phoneNo, slots,place_, amount } = req.body;
   
   try {
     const newBooking = new Bookings({
@@ -44,6 +47,7 @@ const createBooking = async (req, res) => {
       username,
       phoneNo,
       slots,
+      place_,
       amount,
     });
      

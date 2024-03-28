@@ -10,7 +10,7 @@ router.post('/login',UsersController.Login);
 
 router.get('/allbookings',BookingsController.getAllBookings );
 router.get('/recentbookings',BookingsController.getBookingsLast5Hours);
-router.get('/prebooked',BookingsController.getCombinedSlotsLast5Hours);
+router.get('/prebooked/:place_',BookingsController.getCombinedSlotsLast5Hours);
 router.post('/createbooking',BookingsController.createBooking);
 
 module.exports = router;
