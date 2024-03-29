@@ -28,7 +28,7 @@ app.use('/',routes);
 const URL =  process.env.MONGO_URL
 
 
-mongoose.connect("mongodb+srv://datasalt11:data7879069987salt@datasaltbusiness.pk26uu2.mongodb.net/parkingapp?retryWrites=true&w=majority&appName=DatasaltBusiness",{
+mongoose.connect("mongodb+srv://akshatawasthy19:qW4z5mT0u74DPQmW@akshatdb.k2w7gu2.mongodb.net/Parkingapp?retryWrites=true&w=majority&appName=AkshatDB",{
     useNewUrlParser: true,
     useUnifiedTopology:true
 }).then(success =>{
